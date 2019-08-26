@@ -3,6 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+// 全局引入不推荐，会使首页打开慢
+// import Vant from 'vant'
+// import 'vant/lib/index.css'
+// Vue.use(Vant)
+import {Button} from 'vant'
+Vue.use(Button)
 
 Vue.config.productionTip = false
 
