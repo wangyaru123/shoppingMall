@@ -1,11 +1,20 @@
 const mongoose = require('mongoose')
 const db = "mongodb://localhost/smiledemo"
+// glob：node的glob模块允许你使用 * 等符号，来写一个glob规则，像在shell里一样，获取匹配对应规则文件。
+// resolve: 将一系列路径或路径段解析为绝对路径。
+const glob = require('glob')
+const { resolve } = require('path')
+
+// 使用了glob.sync同步引入所有的schema文件，然后用forEach的方法require（引入）进来
+exports.initSchemas = () => {
+  glob.sync(resolve(__dirname, './schema/', '**/*.js')).forEach(require)
+}
 
 mongoose.Promise = global.Promise
 
 exports.connect = () => {
   //连接数据库
-  mongoose.connect(db)
+  mongoose.connect(db, { useNewUrlParser: true })
 
   let maxConnectTimes = 0
   return new Promise((resolve, reject) => {
@@ -36,6 +45,7 @@ exports.connect = () => {
     //链接打开的时候
     mongoose.connection.once('open', () => {
       console.log('MongoDB Connected successfully!')
+      resolve()
     })
   })
 }
