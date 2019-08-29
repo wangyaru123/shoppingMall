@@ -8,8 +8,6 @@ const categorySchema = new Schema({
   TYPE: { type: Number },
   SORT: { type: Number },
   COMMENTS: { type: String }
-}, {
-    collection: category
-  })
+})
 
 mongoose.model('Category', categorySchema)
