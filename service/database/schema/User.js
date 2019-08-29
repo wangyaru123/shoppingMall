@@ -13,7 +13,10 @@ const userSchema = new Schema({
   password: String,
   createAt: { type: Date, default: Date.now() },
   lastLoginAt: { type: Date, default: Date.now() }
-})
+}, {
+    // 不使用默认的users
+    collection: 'user'
+  })
 
 //每次存储数据时都要执行
 userSchema.pre('save', function (next) {
@@ -30,6 +33,18 @@ userSchema.pre('save', function (next) {
     })
   })
 })
+
+userSchema.methods = {
+  //密码比对的方法
+  comparePassword: (_password, password) => {
+    return new Promise((resolve, reject) => {
+      bcrypt.compare(_password, password, (err, isMatch) => {
+        if (!err) resolve(isMatch)
+        else reject(err)
+      })
+    })
+  }
+}
 
 //发布模型
 mongoose.model('User', userSchema)

@@ -23,18 +23,13 @@ router.use('/home', home.routes())
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-//立即执行函数
-// ; (async () => {
-//   await connect()
-//   initSchemas()
-//   const User = mongoose.model('User')
-//   let oneUser = new User({ userName: 'jspan2g', password: '123456' })
-//   oneUser.save().then(() => {
-//     console.log('插入成功')
-//   })
-//   let users = await User.findOne({}).exec()
-//   console.log(users)
-// })()
+  //立即执行函数
+  ; (async () => {
+    // 数据库连接
+    await connect()
+    // 引入所有schema
+    initSchemas()
+  })()
 
 app.use(async (ctx) => {
   ctx.body = '<h1>hello Koa2</h1>'
