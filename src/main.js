@@ -16,6 +16,7 @@ Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(Li
 
 Vue.config.productionTip = false
 
+console.log(router)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

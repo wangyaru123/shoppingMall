@@ -1,33 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ShoppingMall from '@/components/pages/ShoppingMall'
-import Register from '@/components/pages/Register'
-import Login from '@/components/pages/Login'
-import Goods from '@/components/pages/Goods'
+import mobileRouter from './modules/mobile'
+import pcRouter from './modules/pc'
 
 Vue.use(Router)
 
+const { body } = document
+const WIDTH = 992 // refer to Bootstrap's responsive design
+let isMobile = true
+const rect = body.getBoundingClientRect()
+if (rect.width - 1 > WIDTH) isMobile = false
+
+console.log(isMobile)
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'ShoppingMall',
-      component: ShoppingMall
-    },
-    {
-      path: '/register',
-      name: 'Register',
-      component: Register
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/Goods',
-      name: 'Goods',
-      component: Goods
-    }
-  ]
+  routes: isMobile ? mobileRouter : pcRouter
 })
