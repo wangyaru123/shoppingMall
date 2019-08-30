@@ -7,6 +7,9 @@ const categorySubSchema = new Schema({
   MALL_SUB_NAME: { type: String },
   COMMENTS: { type: String },
   SORT: { type: Number }
+},{
+  // 不使用默认的
+  collection: 'categorySub'
 })
 
 mongoose.model('CategorySub', categorySubSchema)

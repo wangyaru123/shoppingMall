@@ -8,6 +8,9 @@ const categorySchema = new Schema({
   TYPE: { type: Number },
   SORT: { type: Number },
   COMMENTS: { type: String }
-})
+}, {
+    // 不使用默认的
+    collection: 'category'
+  })
 
 mongoose.model('Category', categorySchema)
