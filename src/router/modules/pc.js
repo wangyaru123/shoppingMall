@@ -1,11 +1,4 @@
-// 路由规则
-// import Layout from '@/layout'
-import ShoppingMall from '@/components/pages/ShoppingMall'
-import Register from '@/components/pages/Register'
-import Login from '@/components/pages/Login'
-import Goods from '@/components/pages/Goods'
 // 后台管理
-
 // 路由规则
 // import Layout from '@/layout'
 import Category from '@/components/pages/admin/Category'

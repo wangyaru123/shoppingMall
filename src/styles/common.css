@@ -1,0 +1,24 @@
+.text-l {
+  text-align: left;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.flexdiv {
+  display: flex;
+}
+
+.flexdiv-left {
+  width: 200px;
+}
+
+.flexdiv-right {
+  flex: 1;
+}
+

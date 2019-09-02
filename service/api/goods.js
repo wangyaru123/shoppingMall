@@ -135,7 +135,7 @@ router.post('/deleteCategory', async (ctx) => {
   try {
     let ID = ctx.request.body.ID
     const Category = mongoose.model('Category')
-    let result = await Category.remove({ ID: ID }).exec()
+    let result = await Category.deleteOne({ ID: ID }).exec()
     ctx.body = { code: 200, message: result }
   } catch (err) {
     ctx.body = { code: 500, message: err }

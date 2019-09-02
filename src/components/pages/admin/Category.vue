@@ -1,39 +1,63 @@
 <template>
-  <div>
-    <el-button type="primary" size="small" round @click="addClick">添加</el-button>
-    <el-button type="danger" size="small" round @click="deleteClick">删除</el-button>
-    <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%" @selection-change="handleSelectionChange">
-      <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column label="大类名称" width="120">
-        <template slot-scope="scope">{{ scope.row.MALL_CATEGORY_NAME }}</template>
-      </el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button type="primary" size="mini" icon="el-icon-edit" @click="editRow( scope.row )"></el-button>
-          <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteRow( scope.row )"></el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <!-- 弹框 -->
-    <el-dialog :visible.sync="dialogVisible" title="请输入名称" class="width-20">
-      <el-form label-position="right" label-width="100px" :model="dialogData">
-        <el-form-item label="大类名称：">
-          <el-input v-model="dialogData.MALL_CATEGORY_NAME" size="small"></el-input>
-        </el-form-item>
-        <div class="text-c">
-          <el-button type="primary" size="medium" @click="submitClick">确定</el-button>
-          <el-button type="info" size="medium" @click="cancel">取消</el-button>
-        </div>
-      </el-form>
-    </el-dialog>
+  <div class="flexdiv">
+    <div class="flexdiv-left">
+      <navMenu />
+    </div>
+    <div class="flexdiv-right p-20">
+      <el-row class="text-l">
+        <el-button type="primary" size="small" round @click="addClick">添加大类</el-button>
+        <!-- <el-button type="danger" size="small" round @click="deleteRow('many' )">删除</el-button> -->
+      </el-row>
+      <el-table
+        class="mt-20"
+        ref="multipleTable"
+        :data="tableData"
+        tooltip-effect="dark"
+        border
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
+        <el-table-column label="序号" width="100" type="index" align="center">
+          <template slot-scope="scope">
+            <span>{{ scope.$index + 1 }}</span>
+          </template>
+        </el-table-column>
+        <!-- <el-table-column type="selection" width="55" align="center"></el-table-column> -->
+        <el-table-column label="大类名称" width="300" align="center">
+          <template slot-scope="scope">{{ scope.row.MALL_CATEGORY_NAME }}</template>
+        </el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button type="primary" size="mini" icon="el-icon-edit" @click="editRow( scope.row )"></el-button>
+            <el-button type="danger" size="mini" icon="el-icon-delete" @click="deleteRow('one',scope.row )"></el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <!-- 弹框 -->
+      <el-dialog :visible.sync="dialogVisible" title="请输入名称">
+        <el-form label-position="right" label-width="100px" :model="dialogData">
+          <el-form-item label="大类名称：">
+            <el-input v-model="dialogData.MALL_CATEGORY_NAME" size="small"></el-input>
+          </el-form-item>
+          <div class="text-c">
+            <el-button type="primary" size="medium" @click="submitClick">确定</el-button>
+            <el-button type="info" size="medium" @click="cancel">取消</el-button>
+          </div>
+        </el-form>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import url from '@/serviceAPI.config.js'
+import navMenu from '@/components/component/navMenu'
 
 export default {
+  components: {
+    navMenu
+  },
   data() {
     return {
       tableData: [],
@@ -48,7 +72,8 @@ export default {
   },
   methods: {
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      this.multipleSelection = val
+      console.log(this.multipleSelection)
     },
     // 获取大类
     getInfo() {
@@ -115,13 +140,12 @@ export default {
         })
     },
     // 删除大类信息
-    deleteCategory() {
+    deleteCategory(ID) {
       axios({
         url: url.deleteCategory,
         method: 'post',
         data: {
-          ID: this.dialogData.ID,
-          MALL_CATEGORY_NAME: this.dialogData.MALL_CATEGORY_NAME
+          ID: ID
         }
       })
         .then(response => {
@@ -148,17 +172,25 @@ export default {
       this.dialogVisible = true
       this.dialogData = { ID: row.ID, MALL_CATEGORY_NAME: row.MALL_CATEGORY_NAME }
     },
-    // 删除
-    deleteClick() {
-    },
     // 确认删除
-    deleteRow(row) {
+    deleteRow(once, row) {
       this.$confirm('此操作将删除该行, 是否删除?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(() => this.deleteCategory(row.ID))
-        .catch(() => this.$message.info('取消删除'))
+      }).then(() => {
+        this.deleteCategory(row.ID)
+        // 复选框
+        // if (once === 'many') this.deleteCategory(this.multipleSelection)
+        // 单行
+        // else {
+        //   const deleteData = {
+        //     ID: row.ID,
+        //     MALL_CATEGORY_NAME: row.MALL_CATEGORY_NAME
+        //   }
+        //   this.deleteCategory(deleteData)
+        // }
+      }).catch(() => this.$message.info('取消删除'))
     },
     submitClick() {
       this.dialogVisible = false
