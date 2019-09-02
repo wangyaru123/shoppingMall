@@ -98,6 +98,50 @@ router.get('/getCategoryList', async (ctx) => {
   }
 })
 
+// 添加大类
+router.post('/addCategory', async (ctx) => {
+  const Category = mongoose.model('Category')
+  let newCategory = new Category(ctx.request.body)
+  await newCategory.save().then(() => {
+    //成功返回code=200，并返回成功信息
+    ctx.body = {
+      code: 200,
+      message: '注册成功'
+    }
+  }).catch(error => {
+    //失败返回code=500，并返回错误信息
+    ctx.body = {
+      code: 500,
+      message: error
+    }
+  })
+})
+
+// 更新大类
+router.post('/updateCategory', async (ctx) => {
+  try {
+    let ID = ctx.request.body.ID
+    let MALL_CATEGORY_NAME = ctx.request.body.MALL_CATEGORY_NAME
+    const Category = mongoose.model('Category')
+    let result = await Category.update({ ID: ID }, { $set: { MALL_CATEGORY_NAME: MALL_CATEGORY_NAME } }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
+// 删除大类
+router.post('/deleteCategory', async (ctx) => {
+  try {
+    let ID = ctx.request.body.ID
+    const Category = mongoose.model('Category')
+    let result = await Category.remove({ ID: ID }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
 // 读取小类
 router.get('/getCategorySubList', async (ctx) => {
   try {

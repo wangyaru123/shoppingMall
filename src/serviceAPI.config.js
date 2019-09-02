@@ -6,7 +6,11 @@ const URL = {
   getGoodsInfo: BASEURL + '/getGoodsInfo',
   registerUser: LOCALURL + '/user/register',  //用户注册接口
   login: LOCALURL + '/user/login',   //用户注册接口
-  getDetailGoodsInfo: LOCALURL + '/goods/getDetailGoodsInfo'  //获取商品详情
+  getDetailGoodsInfo: LOCALURL + '/goods/getDetailGoodsInfo',  //获取商品详情
+  getCategoryList: LOCALURL + '/goods/getCategoryList', //获取大类
+  addCategory: LOCALURL + '/goods/addCategory', //添加大类
+  updateCategory: LOCALURL + '/goods/updateCategory',  //更新大类
+  deleteCategory: LOCALURL + '/goods/deleteCategory'  //删除大类
 }
 
 module.exports = URL

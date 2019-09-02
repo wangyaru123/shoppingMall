@@ -11,7 +11,6 @@ let isMobile = true
 const rect = body.getBoundingClientRect()
 if (rect.width - 1 > WIDTH) isMobile = false
 
-console.log(isMobile)
 export default new Router({
   routes: isMobile ? mobileRouter : pcRouter
 })

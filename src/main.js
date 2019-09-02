@@ -11,12 +11,16 @@ import router from './router'
 // import 'swiper/dist/css/swiper.css'
 // Vue.use(VueAwesomeSwiper)
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
+Vue.use(ElementUI, { locale })
+
 import { Button, Row, Col, Swipe, SwipeItem, Lazyload, List, Field, NavBar, Tab, Tabs } from 'vant'
 Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List).use(Field).use(NavBar).use(Tab).use(Tabs)
 
 Vue.config.productionTip = false
 
-console.log(router)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')    //引入Mongoose
 const Schema = mongoose.Schema          //声明Schema
+let ObjectId = Schema.Types.ObjectId
 
 const categorySchema = new Schema({
-  ID: { unique: true, type: String },
+  ID: { unique: true, type: ObjectId },
   MALL_CATEGORY_NAME: { type: String },
   IMAGE: { type: String },
   TYPE: { type: Number },
