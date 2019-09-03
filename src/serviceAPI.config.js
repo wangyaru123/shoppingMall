@@ -10,7 +10,11 @@ const URL = {
   getCategoryList: LOCALURL + '/goods/getCategoryList', //获取大类
   addCategory: LOCALURL + '/goods/addCategory', //添加大类
   updateCategory: LOCALURL + '/goods/updateCategory',  //更新大类
+<<<<<<< HEAD
   deleteCategory: LOCALURL + '/goods/deleteCategory',  //删除大类
+=======
+  deleteCategory: LOCALURL + '/goods/deleteCategory', //删除大类
+>>>>>>> github/master
   getCategorySubList: LOCALURL + '/goods/getCategorySubList', //获取小类
   addCategorySub: LOCALURL + '/goods/addCategorySub', //添加小类
   updateCategorySub: LOCALURL + '/goods/updateCategorySub',  //更新小类

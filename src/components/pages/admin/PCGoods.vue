@@ -39,7 +39,7 @@
           <el-form-item label="商品名称：">
             <el-input v-model="dialogData.MALL_CATEGORY_NAME" size="small"></el-input>
           </el-form-item>
-          <div class="text-c">
+          <div>
             <el-button type="primary" size="medium" @click="submitClick">确定</el-button>
             <el-button type="info" size="medium" @click="cancel">取消</el-button>
           </div>

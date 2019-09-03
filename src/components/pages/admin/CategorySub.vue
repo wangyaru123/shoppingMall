@@ -163,7 +163,7 @@ export default {
     // 删除小类信息
     deleteCategory(ID) {
       axios({
-        url: url.deleteCategory,
+        url: url.deleteCategorySub,
         method: 'post',
         data: {
           ID: ID
@@ -207,7 +207,7 @@ export default {
         // else {
         //   const deleteData = {
         //     ID: row.ID,
-        //     MALL_CATEGORY_NAME: row.MALL_CATEGORY_NAME
+        //     MALL_SUB_NAME: row.MALL_SUB_NAME
         //   }
         //   this.deleteCategory(deleteData)
         // }
