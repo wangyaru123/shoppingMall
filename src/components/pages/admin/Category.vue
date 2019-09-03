@@ -39,7 +39,7 @@
           <el-form-item label="大类名称：">
             <el-input v-model="dialogData.MALL_CATEGORY_NAME" size="small"></el-input>
           </el-form-item>
-          <div class="text-c">
+          <div>
             <el-button type="primary" size="medium" @click="submitClick">确定</el-button>
             <el-button type="info" size="medium" @click="cancel">取消</el-button>
           </div>
@@ -141,6 +141,7 @@ export default {
     },
     // 删除大类信息
     deleteCategory(ID) {
+      console.log('delete'+ID)
       axios({
         url: url.deleteCategory,
         method: 'post',
@@ -170,16 +171,17 @@ export default {
     editRow(row) {
       this.act = 'edit'
       this.dialogVisible = true
-      this.dialogData = { ID: row.ID, MALL_CATEGORY_NAME: row.MALL_CATEGORY_NAME }
+      this.dialogData = { ID: row._id, MALL_CATEGORY_NAME: row.MALL_CATEGORY_NAME }
     },
     // 确认删除
     deleteRow(once, row) {
+      console.log(row)
       this.$confirm('此操作将删除该行, 是否删除?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.deleteCategory(row.ID)
+        this.deleteCategory(row._id)
         // 复选框
         // if (once === 'many') this.deleteCategory(this.multipleSelection)
         // 单行
