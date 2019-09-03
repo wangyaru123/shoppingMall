@@ -146,9 +146,66 @@ router.post('/deleteCategory', async (ctx) => {
 router.get('/getCategorySubList', async (ctx) => {
   try {
     //let categoryId = ctx.request.body.categoryId
+    // let categoryId = 1
+    const CategorySub = mongoose.model('CategorySub')
+    let result = await CategorySub.find().exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
+// 读取小类根据大类ID
+router.get('/getCategorySubListByID', async (ctx) => {
+  try {
+    //let categoryId = ctx.request.body.categoryId
     let categoryId = 1
     const CategorySub = mongoose.model('CategorySub')
     let result = await CategorySub.find({ MALL_CATEGORY_ID: categoryId }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
+// 添加小类
+router.post('/addCategorySub', async (ctx) => {
+  const CategorySub = mongoose.model('CategorySub')
+  let newCategorySub = new CategorySub(ctx.request.body)
+  await newCategorySub.save().then(() => {
+    //成功返回code=200，并返回成功信息
+    ctx.body = {
+      code: 200,
+      message: '注册成功'
+    }
+  }).catch(error => {
+    //失败返回code=500，并返回错误信息
+    ctx.body = {
+      code: 500,
+      message: error
+    }
+  })
+})
+
+// 更新小类
+router.post('/updateCategorySub', async (ctx) => {
+  try {
+    let ID = ctx.request.body.ID
+    let MALL_SUB_NAME = ctx.request.body.MALL_SUB_NAME
+    const CategorySub = mongoose.model('CategorySub')
+    let result = await CategorySub.update({ ID: ID }, { $set: { MALL_SUB_NAME: MALL_SUB_NAME } }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
+// 删除小类
+router.post('/deleteCategorySub', async (ctx) => {
+  try {
+    let ID = ctx.request.body.ID
+    const CategorySub = mongoose.model('CategorySub')
+    let result = await CategorySub.deleteOne({ ID: ID }).exec()
     ctx.body = { code: 200, message: result }
   } catch (err) {
     ctx.body = { code: 500, message: err }
