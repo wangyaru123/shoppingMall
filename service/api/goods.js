@@ -145,8 +145,6 @@ router.post('/deleteCategory', async (ctx) => {
 // 读取小类
 router.get('/getCategorySubList', async (ctx) => {
   try {
-    //let categoryId = ctx.request.body.categoryId
-    // let categoryId = 1
     const CategorySub = mongoose.model('CategorySub')
     let result = await CategorySub.find().exec()
     ctx.body = { code: 200, message: result }

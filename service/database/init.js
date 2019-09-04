@@ -14,7 +14,7 @@ mongoose.Promise = global.Promise
 
 exports.connect = () => {
   //连接数据库
-  mongoose.connect(db, { useNewUrlParser: true })
+  mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
 
   let maxConnectTimes = 0
   return new Promise((resolve, reject) => {

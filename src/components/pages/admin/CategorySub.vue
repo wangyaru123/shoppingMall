@@ -37,7 +37,7 @@
         </el-form-item>
         <el-form-item label="所属大类：">
           <el-select v-model="dialogData.MALL_CATEGORY_ID" placeholder="请选择" size="small">
-            <el-option v-for="item in categoryList" :key="item.ID" :value="item.ID" :label="item.MALL_CATEGORY_NAME"></el-option>
+            <el-option v-for="item in categoryList" :key="item._id" :value="item._id" :label="item.MALL_CATEGORY_NAME"></el-option>
           </el-select>
         </el-form-item>
         <div>
@@ -111,9 +111,18 @@ export default {
           console.log(error)
         })
     },
+    //用于生成uuid
+    S4() {
+      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    },
+    guid() {
+      return (this.S4() + this.S4() + this.S4() + this.S4() + this.S4());
+    },
     // 添加小类信息
     addCategory() {
-      console.log('add')
+      // const _id = this.guid()
+      this.dialogData.MALL_CATEGORY_NAME = this.categoryList.filter(item => item._id === this.dialogData.MALL_CATEGORY_ID)[0].MALL_CATEGORY_NAME
+      // this.dialogData._id = _id
       console.log(this.dialogData)
       axios({
         url: url.addCategorySub,
@@ -121,7 +130,7 @@ export default {
         data: {
           MALL_SUB_NAME: this.dialogData.MALL_SUB_NAME,
           MALL_CATEGORY_ID: this.dialogData.MALL_CATEGORY_ID,
-          MALL_CATEGORY_NAME: this.dialogData.MALL_CATEGORY_ID,
+          MALL_CATEGORY_NAME: this.dialogData.MALL_CATEGORY_NAME,
           SORT: 1,
           COMMENTS: null
         }
@@ -185,13 +194,14 @@ export default {
     addClick() {
       this.act = 'add'
       this.dialogVisible = true
-      this.dialogData = { MALL_SUB_NAME: '', MALL_CATEGORY_ID: '' }
+      this.dialogData = { MALL_SUB_NAME: '', MALL_CATEGORY_ID: '', MALL_CATEGORY_NAME: '' }
     },
     // 点击编辑按钮，弹框显示，并回显数据
     editRow(row) {
       this.act = 'edit'
       this.dialogVisible = true
-      this.dialogData = { ID: row._id, MALL_CATEGORY_NAME: row.MALL_CATEGORY_NAME }
+      console.log(row)
+      this.dialogData = { _id: row._id, MALL_SUB_NAME: row.MALL_SUB_NAME, MALL_CATEGORY_ID: row.MALL_CATEGORY_ID }
     },
     // 确认删除
     deleteRow(once, row) {
