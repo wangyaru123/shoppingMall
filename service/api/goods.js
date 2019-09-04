@@ -190,8 +190,10 @@ router.post('/updateCategorySub', async (ctx) => {
   try {
     let ID = ctx.request.body.ID
     let MALL_SUB_NAME = ctx.request.body.MALL_SUB_NAME
+    let MALL_CATEGORY_ID = ctx.request.body.MALL_CATEGORY_ID
+    let MALL_CATEGORY_NAME = ctx.request.body.MALL_CATEGORY_NAME
     const CategorySub = mongoose.model('CategorySub')
-    let result = await CategorySub.update({ _id: ID }, { $set: { MALL_SUB_NAME: MALL_SUB_NAME } }).exec()
+    let result = await CategorySub.update({ _id: ID }, { $set: { MALL_SUB_NAME: MALL_SUB_NAME, MALL_CATEGORY_ID: MALL_CATEGORY_ID, MALL_CATEGORY_NAME: MALL_CATEGORY_NAME } }).exec()
     ctx.body = { code: 200, message: result }
   } catch (err) {
     ctx.body = { code: 500, message: err }

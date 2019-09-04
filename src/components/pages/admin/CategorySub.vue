@@ -111,18 +111,9 @@ export default {
           console.log(error)
         })
     },
-    //用于生成uuid
-    S4() {
-      return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-    },
-    guid() {
-      return (this.S4() + this.S4() + this.S4() + this.S4() + this.S4());
-    },
     // 添加小类信息
     addCategory() {
-      // const _id = this.guid()
       this.dialogData.MALL_CATEGORY_NAME = this.categoryList.filter(item => item._id === this.dialogData.MALL_CATEGORY_ID)[0].MALL_CATEGORY_NAME
-      // this.dialogData._id = _id
       console.log(this.dialogData)
       axios({
         url: url.addCategorySub,
@@ -149,12 +140,16 @@ export default {
     },
     // 更新小类信息
     updateCategory() {
+      this.dialogData.MALL_CATEGORY_NAME = this.categoryList.filter(item => item._id === this.dialogData.MALL_CATEGORY_ID)[0].MALL_CATEGORY_NAME
+      console.log(this.dialogData)
       axios({
         url: url.updateCategorySub,
         method: 'post',
         data: {
           ID: this.dialogData.ID,
-          MALL_SUB_NAME: this.dialogData.MALL_SUB_NAME
+          MALL_SUB_NAME: this.dialogData.MALL_SUB_NAME,
+          MALL_CATEGORY_ID: this.dialogData.MALL_CATEGORY_ID,
+          MALL_CATEGORY_NAME: this.dialogData.MALL_CATEGORY_NAME
         }
       })
         .then(response => {
@@ -201,7 +196,7 @@ export default {
       this.act = 'edit'
       this.dialogVisible = true
       console.log(row)
-      this.dialogData = { _id: row._id, MALL_SUB_NAME: row.MALL_SUB_NAME, MALL_CATEGORY_ID: row.MALL_CATEGORY_ID }
+      this.dialogData = { ID: row._id, MALL_SUB_NAME: row.MALL_SUB_NAME, MALL_CATEGORY_ID: row.MALL_CATEGORY_ID }
     },
     // 确认删除
     deleteRow(once, row) {
