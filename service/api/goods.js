@@ -211,13 +211,71 @@ router.post('/deleteCategorySub', async (ctx) => {
   }
 })
 
-// 读取商品
+// 读取所有商品
+router.get('/getAllCategoryGood', async (ctx) => {
+  try {
+    //let categorySubId = ctx.request.body.categoryId
+    const Goods = mongoose.model('Goods')
+    let result = await Goods.find().exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
+// 读取商品根据subId
 router.get('/getGoodsListByCategorySubID', async (ctx) => {
   try {
     //let categorySubId = ctx.request.body.categoryId
     let categorySubId = '2c9f6c946016ea9b016016f79c8e0000'
     const Goods = mongoose.model('Goods')
     let result = await Goods.find({ SUB_ID: categorySubId }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
+// 添加商品
+router.post('/addCategoryGood', async (ctx) => {
+  const Goods = mongoose.model('Goods')
+  let newGoods = new Goods(ctx.request.body)
+  await newGoods.save().then(() => {
+    //成功返回code=200，并返回成功信息
+    ctx.body = {
+      code: 200,
+      message: '注册成功'
+    }
+  }).catch(error => {
+    //失败返回code=500，并返回错误信息
+    ctx.body = {
+      code: 500,
+      message: error
+    }
+  })
+})
+
+// 更新商品
+router.post('/updateCategorySub', async (ctx) => {
+  try {
+    let ID = ctx.request.body.ID
+    let NAME = ctx.request.body.NAME
+    let SUB_ID = ctx.request.body.SUB_ID
+    let SUB_NAME = ctx.request.body.SUB_NAME
+    const Goods = mongoose.model('Goods')
+    let result = await Goods.update({ _id: ID }, { $set: { NAME: NAME, SUB_ID: SUB_ID, SUB_NAME: SUB_NAME } }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (err) {
+    ctx.body = { code: 500, message: err }
+  }
+})
+
+// 删除商品
+router.post('/deleteCategorySub', async (ctx) => {
+  try {
+    let ID = ctx.request.body.ID
+    const Goods = mongoose.model('Goods')
+    let result = await Goods.deleteOne({ _id: ID }).exec()
     ctx.body = { code: 200, message: result }
   } catch (err) {
     ctx.body = { code: 500, message: err }

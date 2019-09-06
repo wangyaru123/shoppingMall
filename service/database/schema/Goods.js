@@ -7,6 +7,7 @@ const goodsSchema = new Schema({
   GOODS_SERIAL_NUMBER: String,
   SHOP_ID: String,
   SUB_ID: String,
+  SUB_NAME: String,
   GOOD_TYPE: Number,
   STATE: Number,
   NAME: String,

@@ -12,10 +12,12 @@ const URL = {
   updateCategory: LOCALURL + '/goods/updateCategory',  //更新大类
   deleteCategory: LOCALURL + '/goods/deleteCategory',  //删除大类
   getCategorySubListByID: LOCALURL + '/goods/getCategorySubListByID', //获取小类根据大类ID
-  getCategorySubList:LOCALURL+'goods/getCategorySubList',   //得到小类信息
+  getCategorySubList: LOCALURL + '/goods/getCategorySubList',   //得到小类信息
   addCategorySub: LOCALURL + '/goods/addCategorySub', //添加小类
   updateCategorySub: LOCALURL + '/goods/updateCategorySub',  //更新小类
-  deleteCategorySub: LOCALURL + '/goods/deleteCategorySub'  //删除小类
+  deleteCategorySub: LOCALURL + '/goods/deleteCategorySub', //删除小类
+  getAllCategoryGood: LOCALURL + '/goods/getAllCategoryGood', //获取所有商品
+  addCategoryGood: LOCALURL + '/goods/addCategoryGood'  //添加商品
 }
 
 module.exports = URL
