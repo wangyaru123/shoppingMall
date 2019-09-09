@@ -17,9 +17,10 @@ const URL = {
   updateCategorySub: LOCALURL + '/goods/updateCategorySub',  //更新小类
   deleteCategorySub: LOCALURL + '/goods/deleteCategorySub', //删除小类
   getAllCategoryGood: LOCALURL + '/goods/getAllCategoryGood', //获取所有商品
+  getGoodsListByCategorySubID:LOCALURL + '/goods/getGoodsListByCategorySubID',// 根据类别获取商品
   addCategoryGood: LOCALURL + '/goods/addCategoryGood', //添加商品
   updateCategoryGood: LOCALURL + '/goods/updateCategoryGood', //更新商品
-  deleteCategoryGood: LOCALURL + '/goods/deleteCategoryGood'  //更新商品
+  deleteCategoryGood: LOCALURL + '/goods/deleteCategoryGood'  //删除商品
 }
 
 module.exports = URL
