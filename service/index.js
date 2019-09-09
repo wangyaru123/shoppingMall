@@ -13,12 +13,15 @@ app.use(cors())
 
 let user = require('./api/user.js')
 let goods = require('./api/goods.js')
+let goodsFile = require('./api/goodsFile.js')
 let home = require('./api/home.js')
 
 // 装载所有子路由
 let router = new Router();
+
 router.use('/user', user.routes())
 router.use('/goods', goods.routes())
+router.use('/goodsFile', goodsFile.routes())
 router.use('/home', home.routes())
 
 // 加载路由中间件

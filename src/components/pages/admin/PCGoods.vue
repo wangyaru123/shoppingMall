@@ -8,7 +8,7 @@
         <el-button type="primary" size="small" round @click="addClick">添加商品</el-button>
         <!-- <el-button type="danger" size="small" round @click="deleteRow('many' )">删除</el-button> -->
       </el-row>
-      <el-table class="mt-20" ref="multipleTable" :data="tableData" tooltip-effect="dark" border style="width: 100%">
+      <el-table class="mt-20" ref="multipleTable" :data="tableData" tooltip-effect="dark" border style="width: 100%"  height="80vh">
         <el-table-column label="序号" width="100" type="index" align="center">
           <template slot-scope="scope">
             <span>{{ scope.$index + 1 }}</span>
