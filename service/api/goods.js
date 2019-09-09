@@ -256,14 +256,14 @@ router.post('/addCategoryGood', async (ctx) => {
 })
 
 // 更新商品
-router.post('/updateCategorySub', async (ctx) => {
+router.post('/updateCategoryGood', async (ctx) => {
   try {
     let ID = ctx.request.body.ID
     let NAME = ctx.request.body.NAME
     let SUB_ID = ctx.request.body.SUB_ID
     let SUB_NAME = ctx.request.body.SUB_NAME
     const Goods = mongoose.model('Goods')
-    let result = await Goods.update({ _id: ID }, { $set: { NAME: NAME, SUB_ID: SUB_ID, SUB_NAME: SUB_NAME } }).exec()
+    let result = await Goods.updateOne({ _id: ID }, { $set: { NAME: NAME, SUB_ID: SUB_ID, SUB_NAME: SUB_NAME } }).exec()
     ctx.body = { code: 200, message: result }
   } catch (err) {
     ctx.body = { code: 500, message: err }
@@ -271,7 +271,7 @@ router.post('/updateCategorySub', async (ctx) => {
 })
 
 // 删除商品
-router.post('/deleteCategorySub', async (ctx) => {
+router.post('/deleteCategoryGood', async (ctx) => {
   try {
     let ID = ctx.request.body.ID
     const Goods = mongoose.model('Goods')
