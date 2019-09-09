@@ -3,7 +3,6 @@
     <div class="navbar-div">
       <van-nav-bar title="类别列表" />
     </div>
-
     <div>
       <van-row>
         <van-col span="6">
@@ -96,7 +95,6 @@ export default {
         .catch(error => {
           console.log(error)
         })
-
     },
     clickCategory(index, categoryId) {
       this.categoryIndex = index
@@ -139,7 +137,6 @@ export default {
         this.goodList = []
         this.page = 1
         this.onLoad()
-
       }, 500)
     },
     getGoodList() {
@@ -159,7 +156,6 @@ export default {
             this.finished = true
           }
           this.loading = false;
-
         })
         .catch(error => {
           console.log(error)
@@ -171,16 +167,11 @@ export default {
       this.finished = false
       this.page = 1
       this.onLoad()
-
     },
     //跳转到商品详细页
     goGoodsInfo(id) {
       this.$router.push({ name: 'Goods', params: { goodsId: id } })
     }
-
-
-
-
   },
 }
 </script>

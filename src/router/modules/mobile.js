@@ -4,6 +4,7 @@ import Register from '@/components/pages/Register'
 import Login from '@/components/pages/Login'
 import Goods from '@/components/pages/Goods'
 import CategoryList from '@/components/pages/CategoryList'
+import Cart from '@/components/pages/Cart'
 
 // 报警
 const mobileRouter = [
@@ -31,6 +32,11 @@ const mobileRouter = [
     path: '/CategoryList',
     name: 'CategoryList',
     component: CategoryList
+  },
+  {
+    path: '/Cart',
+    name: 'Cart',
+    component: Cart
   }
 ]
 
