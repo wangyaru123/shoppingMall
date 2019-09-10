@@ -22,7 +22,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 项目截图
 
-![Image text](http://7xjyw1.com1.z0.glb.clouddn.com/koa001.png)
-![Image text](http://7xjyw1.com1.z0.glb.clouddn.com/koa002.png)
-![Image text](http://7xjyw1.com1.z0.glb.clouddn.com/koa003.png)
-![Image text](http://7xjyw1.com1.z0.glb.clouddn.com/koa004.png)
+![Image text](./assets/index.jpg)
