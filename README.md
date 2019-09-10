@@ -22,4 +22,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## 项目截图
 
-![Image text](./assets/index.jpg)
+![](src/assets/index.jpg)
