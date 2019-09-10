@@ -37,7 +37,7 @@ export default {
   created() {
     if (localStorage.userInfo) {
       Toast.success('已登录')
-      this.$router.push('/')
+      this.$router.push('/main')
     }
   },
   methods: {

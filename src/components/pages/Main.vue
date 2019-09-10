@@ -34,6 +34,8 @@ export default {
       this.nowPath = this.$route.path
       if (this.nowPath == '/Cart') {
         this.active = 2
+      } else if (this.nowPath == '/User') {
+        this.active = 3
       }
     },
     changeTabbar(active) {
